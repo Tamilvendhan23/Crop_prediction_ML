@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AgriSmart - Complete Crop Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap">
+  
+  </head>
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2E7D32;
+      --accent-color: #8BC34A;
+      --light-bg: #F5F5F6;
+      --dark-text: #212121;
+      --light-text: #757575;
+      --section-bg: #F9F9F9;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--secondary-color), #1B5E20);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .navbar {
+      background-color: transparent !important;
+    }
+    
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    
+    .hero {
+      background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop') center/cover;
+      padding: 4rem 0;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .container-main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    
+    .page-title {
+      color: var(--secondary-color);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .page-title:after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.25);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .result-card {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+      overflow: hidden;
+      transition: all 0.3s;
+      margin: 2rem auto;
+      max-width: 400px;
+    }
+    
+    .result-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+    }
+    
+    .card-icon {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-text {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    
+    .input-group-text {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      min-width: 45px;
+      justify-content: center;
+    }
+    
+    .feature-section {
+      background-color: var(--section-bg);
+      padding: 3rem 0;
+      margin: 2rem 0;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      height: 100%;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: all 0.3s;
+    }
+    
+    /* [Previous CSS remains unchanged] */
+    
+    .crop-guide {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .crop-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .crop-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-right: 1rem;
+    }
+    
+    .pesticide-card {
+      border-left: 4px solid var(--accent-color);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .natural {
+      border-left-color: var(--primary-color);
+    }
+    
+    .artificial {
+      border-left-color: #FF9800;
+    }
+    
+    .season-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    
+    .season-table th, .season-table td {
+      border: 1px solid #e0e0e0;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    
+    .season-table th {
+      background-color: var(--section-bg);
+    }
+    
+    .season-table tr:nth-child(even) {
+      background-color: var(--section-bg);
+    }
+    
+    .badge-natural {
+      background-color: var(--primary-color);
+    }
+    
+    .badge-artificial {
+      background-color: #FF9800;
+    }
+    
+    
+    /* [Rest of previous CSS remains unchanged] */
+  </style>
+
+  <body>
+    <!-- [Previous Header, Hero, and Features sections remain unchanged] -->
+   <!-- Header -->
+   <header class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <i class="fas fa-leaf me-2"></i>AgriSmart
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#features">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#recommendation">Recommendation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#about">About</a>
+              </li>
+            </ul> -->
+            <ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link text-black fw-bold fs-5" style="letter-spacing: 1px; href="#about">Crop Cultivation Guide
+            </a></li></ul>
+            
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+
+  <!-- Features Section -->
+  
+    <!-- Crop Guide Section -->
+    <section id="crop-guide" class="feature-section">
+      <div class="container">
+        <!-- <h2 class="text-center mb-5">Crop Cultivation Guide</h2> -->
+        <p class="text-center lead mb-5">Learn the optimal seasons, cultivation practices, and pest management for various crops</p>
+        
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="crop-guide">
+              <div class="crop-header">
+                <div class="crop-icon">
+                  <i class="fas fa-apple-alt"></i>
+                </div>
+                <h3>Onion Cultivation Guide</h3>
+              </div>
+              
+              <h5>Optimal Planting Seasons:</h5>
+              <table class="season-table">
+                <tr>
+                  <th>Region</th>
+                  <th>Best Planting Time</th>
+                  <th>Harvest Time</th>
+                </tr>
+                <tr>
+                  <td>North India</td>
+                  <td>October-November</td>
+                  <td>April-May</td>
+                </tr>
+                <tr>
+                  <td>South India</td>
+                  <td>May-June</td>
+                  <td>October-December</td>
+                </tr>
+                <tr>
+                  <td>Central India</td>
+                  <td>November-December</td>
+                  <td>March-April</td>
+                </tr>
+              </table>
+              
+              <h5 class="mt-4">Pest Management:</h5>
+              
+              <div class="pesticide-card natural">
+                <h6><span class="badge badge-natural text-white">Natural</span> Thrips Control</h6>
+                <p><strong>Neem Oil Spray:</strong> Mix 5ml neem oil + 2ml liquid soap per liter of water. Spray every 10 days.</p>
+                <p><strong>Garlic-Chili Spray:</strong> Blend 100g garlic + 100g chili in 1L water, strain and dilute 1:10 before spraying.</p>
+              </div>
+              
+              <div class="pesticide-card artificial">
+                <h6><span class="badge badge-artificial text-white">Chemical</span> Fungal Disease Control</h6>
+                <p><strong>Dithane M-45:</strong> 2g per liter water for purple blotch. Spray at 15-day intervals.</p>
+                <p><strong>Bavistin:</strong> 1g per liter water for stemphylium blight.</p>
+              </div>
+            </div>
+            
+            <div class="crop-guide">
+              <div class="crop-header">
+                <div class="crop-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Tomato Cultivation Guide</h3>
+              </div>
+              
+              <h5>Optimal Planting Seasons:</h5>
+              <table class="season-table">
+                <tr>
+                  <th>Region</th>
+                  <th>Best Planting Time</th>
+                  <th>Harvest Time</th>
+                </tr>
+                <tr>
+                  <td>North India</td>
+                  <td>July-August (Rainy)<br>November-December (Winter)</td>
+                  <td>October-November<br>March-April</td>
+                </tr>
+                <tr>
+                  <td>South India</td>
+                  <td>June-July<br>December-January</td>
+                  <td>September-October<br>April-May</td>
+                </tr>
+              </table>
+              
+              <h5 class="mt-4">Pest Management:</h5>
+              
+              <div class="pesticide-card natural">
+                <h6><span class="badge badge-natural text-white">Natural</span> Fruit Borer Control</h6>
+                <p><strong>Neem Seed Kernel Extract:</strong> 5% solution sprayed weekly during fruiting.</p>
+                <p><strong>Trichoderma viride:</strong> Soil application @ 2.5kg/ha mixed with FYM.</p>
+              </div>
+              
+              <div class="pesticide-card artificial">
+                <h6><span class="badge badge-artificial text-white">Chemical</span> Early Blight Control</h6>
+                <p><strong>Mancozeb:</strong> 2g per liter at 10-day intervals from 3-4 week after planting.</p>
+                <p><strong>Imidacloprid:</strong> 0.5ml per liter for whitefly control.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6">
+            <div class="crop-guide">
+              <div class="crop-header">
+                <div class="crop-icon">
+                  <i class="fas fa-rice"></i>
+                  <i class="fa-sharp fa-solid fa-wheat-awn-circle-exclamation"></i>
+                </div>
+                <h3>Rice Cultivation Guide</h3>
+              </div>
+              
+              <h5>Optimal Planting Seasons:</h5>
+              <table class="season-table">
+                <tr>
+                  <th>Season</th>
+                  <th>Sowing Time</th>
+                  <th>Harvest Time</th>
+                  <th>Varieties</th>
+                </tr>
+                <tr>
+                  <td>Kharif</td>
+                  <td>June-July</td>
+                  <td>November-December</td>
+                  <td>Swarna, MTU 1010</td>
+                </tr>
+                <tr>
+                  <td>Rabi</td>
+                  <td>November-December</td>
+                  <td>March-April</td>
+                  <td>BPT 5204, WGL 14</td>
+                </tr>
+                <tr>
+                  <td>Summer</td>
+                  <td>January-February</td>
+                  <td>April-May</td>
+                  <td>Intan, IR 64</td>
+                </tr>
+              </table>
+              
+              <h5 class="mt-4">Pest Management:</h5>
+              
+              <div class="pesticide-card natural">
+                <h6><span class="badge badge-natural text-white">Natural</span> Stem Borer Control</h6>
+                <p><strong>Neem Cake:</strong> Apply 250kg/ha in standing water.</p>
+                <p><strong>NSKE 5%:</strong> Spray during evening hours at 15-day intervals.</p>
+              </div>
+              
+              <div class="pesticide-card artificial">
+                <h6><span class="badge badge-artificial text-white">Chemical</span> Blast Disease Control</h6>
+                <p><strong>Tricyclazole:</strong> 1g per liter at disease appearance.</p>
+                <p><strong>Carbendazim:</strong> 1g per liter for sheath blight.</p>
+              </div>
+            </div>
+            
+            <div class="crop-guide">
+              <div class="crop-header">
+                <div class="crop-icon">
+                  <i class="fas fa-pepper-hot"></i>
+                  
+                </div>
+                <h3>Cotton Cultivation Guide</h3>
+              </div>
+              
+              <h5>Optimal Planting Seasons:</h5>
+              <table class="season-table">
+                <tr>
+                  <th>Region</th>
+                  <th>Sowing Time</th>
+                  <th>Harvest Time</th>
+                </tr>
+                <tr>
+                  <td>North Zone</td>
+                  <td>April-May</td>
+                  <td>October-December</td>
+                </tr>
+                <tr>
+                  <td>Central Zone</td>
+                  <td>June-July</td>
+                  <td>December-February</td>
+                </tr>
+                <tr>
+                  <td>South Zone</td>
+                  <td>May-June</td>
+                  <td>November-January</td>
+                </tr>
+              </table>
+              
+              <h5 class="mt-4">Pest Management:</h5>
+              
+              <div class="pesticide-card natural">
+                <h6><span class="badge badge-natural text-white">Natural</span> Bollworm Control</h6>
+                <p><strong>Nuclear Polyhedrosis Virus (NPV):</strong> 250 LE/ha mixed with 0.1% teepol.</p>
+                <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals from square formation.</p>
+              </div>
+              
+              <div class="pesticide-card artificial">
+                <h6><span class="badge badge-artificial text-white">Chemical</span> Sucking Pest Control</h6>
+                <p><strong>Acephate 75% SP:</strong> 1.5g per liter for aphids and whiteflies.</p>
+                <p><strong>Spinosad 45% SC:</strong> 0.3ml per liter for spotted bollworm.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-4">
+          <a href="/">
+              <button class="btn btn-primary">View More Crops</button>
+          </a>
+      </div>
+      
+      </div>
+    </section>
+
+    <!-- [Previous Recommendation Form and About sections remain unchanged] -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="mb-3">AgriSmart</h5>
+            <p>Your complete guide to smart farming with crop recommendations, cultivation timing, and pest management solutions.</p>
+            <div class="social-icons mt-3">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-2 mb-4 mb-md-0">
+            <h5 class="mb-3">Resources</h5>
+            <ul class="list-unstyled footer-links">
+              <li class="mb-2"><a href="#crop-guide">Crop Guides</a></li>
+              <li class="mb-2"><a href="#">Seasonal Calendar</a></li>
+              <li class="mb-2"><a href="#">Pest Database</a></li>
+              <li class="mb-2"><a href="#">Farming Techniques</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-4 mb-md-0">
+            <h5 class="mb-3">Quick Links</h5>
+            <ul class="list-unstyled footer-links">
+              <li class="mb-2"><a href="#features">Features</a></li>
+              <li class="mb-2"><a href="#recommendation">Recommendation</a></li>
+              <li class="mb-2"><a href="#crop-guide">Crop Guide</a></li>
+              <li class="mb-2"><a href="#about">About</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5 class="mb-3">Subscribe</h5>
+            <p>Get monthly farming tips and crop updates</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Your email">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div class="copyright text-center">
+          <p class="mb-0">&copy; 2023 AgriSmart. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- [Previous JavaScript remains unchanged] -->
+  </body>
+</html>

@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AgriSmart - Crop Recommendation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap">
+  </head>
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2E7D32;
+      --accent-color: #8BC34A;
+      --light-bg: #F5F5F6;
+      --dark-text: #212121;
+      --light-text: #757575;
+      --section-bg: #F9F9F9;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, var(--secondary-color), #1B5E20);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .navbar {
+      background-color: transparent !important;
+    }
+    
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    
+    .hero {
+      background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop') center/cover;
+      padding: 4rem 0;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .container-main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    
+    .page-title {
+      color: var(--secondary-color);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .page-title:after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.25);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .result-card {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+      overflow: hidden;
+      transition: all 0.3s;
+      margin: 2rem auto;
+      max-width: 400px;
+    }
+    
+    .result-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+    }
+    
+    .card-icon {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-text {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    
+    .input-group-text {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      min-width: 45px;
+      justify-content: center;
+    }
+    
+    .feature-section {
+      background-color: var(--section-bg);
+      padding: 3rem 0;
+      margin: 2rem 0;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      height: 100%;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .container-main {
+        padding: 1.5rem;
+      }
+      
+      .page-title {
+        font-size: 1.75rem;
+      }
+      
+      .hero {
+        padding: 2rem 0;
+      }
+      
+      .feature-card {
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <i class="fas fa-leaf me-2"></i>AgriSmart
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#recommendation">Recommendation</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#about">About</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1 class="display-4 fw-bold mb-3">Smart Crop Recommendation System</h1>
+        <p class="lead mb-4">Harness the power of machine learning to optimize your agricultural yields</p>
+        <a href="#recommendation" class="btn btn-primary btn-lg">
+          <i class="fas fa-play-circle me-2"></i>Get Started
+        </a>
+        <a href="/guide_crop" class="btn btn-primary btn-lg">
+          <i class="fas fa-play-circle me-2"></i>Crop Guide
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="feature-section">
+      <div class="container">
+        <h2 class="text-center mb-5">Why Use Our System?</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3>Data-Driven Insights</h3>
+              <p>Our system analyzes multiple soil and weather parameters to provide scientifically validated crop recommendations.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3>Increase Yields</h3>
+              <p>Farmers using our recommendations have reported 15-30% increase in crop yields compared to traditional methods.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-water"></i>
+              </div>
+              <h3>Resource Optimization</h3>
+              <p>Reduce water and fertilizer usage by selecting crops best suited to your local conditions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="recommendation" class="container container-main">
+      <h1 class="page-title">
+        Crop Recommendation System <i class="fas fa-seedling ms-2"></i>
+      </h1>
+      <p class="text-center mb-4">Enter your agricultural parameters below to get personalized crop recommendations</p>
+
+      <!-- Form -->
+      <form action="/predict" method="POST">
+        <div class="row g-3">
+          <!-- Soil Nutrients -->
+          <div class="col-md-4">
+            <label for="Nitrogen" class="form-label">Nitrogen (N)</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-atom"></i></span>
+              <input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen value" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label for="Phosporus" class="form-label">Phosphorus (P)</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-fire"></i></span>
+              <input type="number" id="Phosporus" name="Phosporus" placeholder="Enter Phosphorus value" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label for="Potassium" class="form-label">Potassium (K)</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-bolt"></i></span>
+              <input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium value" class="form-control" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <!-- Environmental Factors -->
+          <div class="col-md-4">
+            <label for="Temperature" class="form-label">Temperature</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-thermometer-half"></i></span>
+              <input type="number" step="0.01" id="Temperature" name="Temperature" placeholder="Temperature in °C" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label for="Humidity" class="form-label">Humidity</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-tint"></i></span>
+              <input type="number" step="0.01" id="Humidity" name="Humidity" placeholder="Humidity in %" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label for="pH" class="form-label">Soil pH</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fas fa-flask"></i></span>
+              <input type="number" step="0.01" id="pH" name="pH" placeholder="Enter pH value" class="form-control" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <!-- Rainfall -->
+          <div class="col-md-6 offset-md-3">
+            <label for="Rainfall" class="form-label">Rainfall</label>
+            <div class="input-group mb-4">
+              <span class="input-group-text"><i class="fas fa-cloud-rain"></i></span>
+              <input type="number" step="0.01" id="Rainfall" name="Rainfall" placeholder="Rainfall in mm" class="form-control" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fas fa-search me-2"></i> Get Recommendation
+          </button>
+        </div>
+      </form>
+
+      <!-- Result Card -->
+      {% if result %}
+      <div class="card result-card text-center text-white py-4">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h5 class="card-title">Recommended Crop</h5>
+          <p class="card-text">{{ result }}</p>
+          <small class="d-block mt-2">Based on your input parameters</small>
+        </div>
+      </div>
+      {% endif %}
+    </main>
+
+    <!-- About Section -->
+    <section id="about" class="feature-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2>About AgriSmart</h2>
+            <p class="lead">Revolutionizing agriculture through technology</p>
+            <p>AgriSmart is an innovative platform that leverages machine learning to help farmers make data-driven decisions about crop cultivation. Our system analyzes multiple environmental and soil parameters to recommend the most suitable crops for optimal yield.</p>
+            <p>Developed by agricultural scientists and data engineers, our recommendation engine is trained on thousands of data points from agricultural research stations across the country.</p>
+            <div class="mt-4">
+              <a href="#" class="btn btn-outline-primary me-2">Learn More</a>
+              <a href="#" class="btn btn-primary">Contact Us</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="https://plus.unsplash.com/premium_photo-1661932971080-c6ec2a91f64c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Farmers using technology" class="img-fluid rounded shadow">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="mb-3">AgriSmart</h5>
+            <p>Empowering farmers with intelligent crop recommendations through machine learning and data science.</p>
+            <div class="social-icons mt-3">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-2 mb-4 mb-md-0">
+            <h5 class="mb-3">Quick Links</h5>
+            <ul class="list-unstyled footer-links">
+              <li class="mb-2"><a href="#">Home</a></li>
+              <li class="mb-2"><a href="#features">Features</a></li>
+              <li class="mb-2"><a href="#recommendation">Recommendation</a></li>
+              <li class="mb-2"><a href="#about">About</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-4 mb-md-0">
+            <h5 class="mb-3">Resources</h5>
+            <ul class="list-unstyled footer-links">
+              <li class="mb-2"><a href="#">Blog</a></li>
+              <li class="mb-2"><a href="#">FAQs</a></li>
+              <li class="mb-2"><a href="#">Research Papers</a></li>
+              <li class="mb-2"><a href="#">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5 class="mb-3">Contact</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Farm Lane, Agri City</li>
+              <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (234) 567-8900</li>
+              <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@agrismart.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright text-center">
+          <p class="mb-0">&copy; 2023 AgriSmart. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Form input animations
+      document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'scale(1.02)';
+          this.parentElement.style.zIndex = '1';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'scale(1)';
+          this.parentElement.style.zIndex = '0';
+        });
+      });
+    </script>
+  </body>
+</html>

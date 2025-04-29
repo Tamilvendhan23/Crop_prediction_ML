@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AgriSmart - Crop Recommendation Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap">
+  </head>
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2E7D32;
+      --accent-color: #8BC34A;
+      --light-bg: #F5F5F6;
+      --dark-text: #212121;
+      --light-text: #757575;
+      --section-bg: #F9F9F9;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, var(--secondary-color), #1B5E20);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .result-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    
+    .result-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .crop-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .crop-details-card {
+      background: var(--section-bg);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .detail-section {
+      margin-bottom: 2rem;
+    }
+    
+    .season-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    
+    .season-table th, .season-table td {
+      border: 1px solid #e0e0e0;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    
+    .season-table th {
+      background-color: rgba(0,0,0,0.05);
+    }
+    
+    .pesticide-card {
+      border-left: 4px solid var(--accent-color);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .natural {
+      border-left-color: var(--primary-color);
+    }
+    
+    .artificial {
+      border-left-color: #FF9800;
+    }
+    
+    .badge-natural {
+      background-color: var(--primary-color);
+    }
+    
+    .badge-artificial {
+      background-color: #FF9800;
+    }
+    
+    .back-btn {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .result-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <i class="fas fa-leaf me-2"></i>AgriSmart
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Result Content -->
+    <main class="result-container">
+      <div class="result-header">
+        <div class="crop-icon">
+            <!-- <img src="{{url_for('static', filename='crop.png')}}" style="width: 70px; height: 70px;" class="card-img-top" alt="..."> -->
+		 
+          {% if result == 'rice' %}<i class="fas fa-wheat"></i>
+          {% elif result == 'maize' %}<i class="fas fa-corn"></i>
+          {% elif result == 'chickpea' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'kidneybeans' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'pigeonpeas' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'mothbeans' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'mungbean' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'blackgram' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'lentil' %}<i class="fas fa-seedling"></i>
+          {% elif result == 'pomegranate' %}<i class="fas fa-apple-alt"></i>
+          {% elif result == 'banana' %}<i class="fas fa-apple-alt"></i>
+          {% elif result == 'mango' %}<i class="fas fa-apple-alt"></i>
+          {% elif result == 'grapes' %}<i class="fas fa-wine-bottle"></i>
+          {% elif result == 'watermelon' %}<i class="fas fa-watermelon"></i>
+          {% elif result == 'muskmelon' %}<i class="fas fa-watermelon"></i>
+          {% elif result == 'apple' %}<i class="fas fa-apple-alt"></i>
+          {% elif result == 'orange' %}<i class="fas fa-apple-alt"></i>
+          {% elif result == 'papaya' %}<i class="fas fa-apple-alt"></i>
+          {% elif result == 'coconut' %}<i class="fas fa-coconut"></i>
+          {% elif result == 'cotton' %}<i class="fas fa-tshirt"></i>
+          {% elif result == 'jute' %}<i class="fas fa-basket-shopping"></i>
+          {% elif result == 'coffee' %}<i class="fas fa-coffee"></i>
+          {% else %}<i class="fas fa-seedling"></i>{% endif %}
+        </div>
+        <h1>Recommended Crop: <span class="text-success">{{ result }}</span></h1>
+        <p class="lead">Based on your soil and climate parameters</p>
+      </div>
+
+      <!-- Dynamic Crop Information Based on Recommendation -->
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- Cultivation Timing -->
+          <div class="crop-details-card">
+            <h3><i class="fas fa-calendar-alt me-2"></i>Optimal Cultivation Period</h3>
+            
+            <!-- Rice -->
+            {% if result == 'rice' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>November-December</td>
+              </tr>
+              <tr>
+                <td>Rabi</td>
+                <td>November-December</td>
+                <td>March-April</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Swarna, MTU 1010, BPT 5204</p>
+            
+            <!-- Maize -->
+            {% elif result == 'maize' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>October-November</td>
+                <td>February-March</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> HQPM 1, Pusa Composite 3</p>
+            
+            <!-- Chickpea -->
+            {% elif result == 'chickpea' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>October-November</td>
+                <td>February-March</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>September-October</td>
+                <td>January-February</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Pusa 372, JG 11</p>
+            
+            <!-- Kidneybeans -->
+            {% elif result == 'kidneybeans' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>Rabi</td>
+                <td>October-November</td>
+                <td>February-March</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Pusa Ruby, Arka Komal</p>
+            
+            <!-- Pigeonpeas -->
+            {% elif result == 'pigeonpeas' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>June-July</td>
+                <td>December-January</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>May-June</td>
+                <td>November-December</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> ICPL 87119, Pusa Arhar 16</p>
+            
+            <!-- Mothbeans -->
+            {% elif result == 'mothbeans' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> RMO 40, RMO 225</p>
+            
+            <!-- Mungbean -->
+            {% elif result == 'mungbean' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>March-April</td>
+                <td>May-June</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Pusa Vishal, ML 2056</p>
+            
+            <!-- Blackgram -->
+            {% elif result == 'blackgram' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>Rabi</td>
+                <td>November-December</td>
+                <td>February-March</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> T9, PU 31</p>
+            
+            <!-- Lentil -->
+            {% elif result == 'lentil' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>October-November</td>
+                <td>March-April</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Pusa Masoor 1, L 4076</p>
+            
+            <!-- Pomegranate -->
+            {% elif result == 'pomegranate' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Main Season</td>
+                <td>June-July</td>
+                <td>September-February</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Bhagwa, Ganesh</p>
+            
+            <!-- Banana -->
+            {% elif result == 'banana' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>Year-round</td>
+                <td>12-15 months after planting</td>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>June-July</td>
+                <td>12-15 months after planting</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Grand Naine, Robusta</p>
+            
+            <!-- Mango -->
+            {% elif result == 'mango' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>All India</td>
+                <td>July-August</td>
+                <td>March-July (varies by variety)</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Alphonso, Dashehari, Langra</p>
+            
+            <!-- Grapes -->
+            {% elif result == 'grapes' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Maharashtra</td>
+                <td>February-March</td>
+                <td>November-December</td>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>January-February</td>
+                <td>May-June</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Thompson Seedless, Sharad Seedless</p>
+            
+            <!-- Watermelon -->
+            {% elif result == 'watermelon' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>December-January</td>
+                <td>March-April</td>
+              </tr>
+              <tr>
+                <td>Rainy</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Sugar Baby, Asahi Yamato</p>
+            
+            <!-- Muskmelon -->
+            {% elif result == 'muskmelon' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>January-February</td>
+                <td>April-May</td>
+              </tr>
+              <tr>
+                <td>Rainy</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Hara Madhu, Punjab Hybrid</p>
+            
+            <!-- Apple -->
+            {% elif result == 'apple' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Himalayan Region</td>
+                <td>January-February</td>
+                <td>July-September</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Royal Delicious, Red Delicious</p>
+            
+            <!-- Orange -->
+            {% elif result == 'orange' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Central India</td>
+                <td>July-August</td>
+                <td>November-January</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>June-July</td>
+                <td>December-February</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Nagpur Santra, Coorg Mandarin</p>
+            
+            <!-- Papaya -->
+            {% elif result == 'papaya' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Main Season</td>
+                <td>June-July</td>
+                <td>Starts 8-10 months after planting</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Pusa Delicious, Red Lady</p>
+            
+            <!-- Coconut -->
+            {% elif result == 'coconut' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Coastal Areas</td>
+                <td>May-June</td>
+                <td>Year-round after 5-6 years</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> West Coast Tall, Chandra Kalpa</p>
+            
+            <!-- Cotton -->
+            {% elif result == 'cotton' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North Zone</td>
+                <td>April-May</td>
+                <td>October-December</td>
+              </tr>
+              <tr>
+                <td>Central Zone</td>
+                <td>June-July</td>
+                <td>December-February</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Bt Cotton varieties like RCH 2</p>
+            
+            <!-- Jute -->
+            {% elif result == 'jute' %}
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Main Season</td>
+                <td>March-April</td>
+                <td>July-August</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> JRO 524, JRO 7835</p>
+            
+            <!-- Coffee -->
+            {% elif result == 'coffee' %}
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>June-July</td>
+                <td>November-March</td>
+              </tr>
+            </table>
+            <p><strong>Best Varieties:</strong> Arabica, Robusta</p>
+            
+            {% else %}
+            <p>General cultivation period for {{ result }} is during the main growing season matching your climate parameters.</p>
+            {% endif %}
+          </div>
+          
+          <!-- Soil Requirements -->
+          <div class="crop-details-card">
+            <h3><i class="fas fa-seedling me-2"></i>Soil Requirements</h3>
+            {% if result == 'rice' %}
+            <p>Rice grows best in clayey loam soil with good water retention capacity. Ideal pH range: 5.5-6.5.</p>
+            {% elif result == 'maize' %}
+            <p>Maize requires well-drained loamy soil with pH between 6.0-7.5. Avoid waterlogged conditions.</p>
+            {% elif result == 'chickpea' %}
+            <p>Chickpea thrives in well-drained loamy soils with pH 6.0-8.0. Avoid heavy soils.</p>
+            {% elif result == 'kidneybeans' %}
+            <p>Kidney beans prefer well-drained sandy loam soils with pH 6.0-7.5.</p>
+            {% elif result == 'pigeonpeas' %}
+            <p>Pigeonpeas grow well in a wide range of soils but prefer well-drained loams with pH 5.0-7.0.</p>
+            {% elif result == 'mothbeans' %}
+            <p>Mothbeans are drought-tolerant and grow well in sandy loam soils with pH 7.0-8.5.</p>
+            {% elif result == 'mungbean' %}
+            <p>Mungbean prefers well-drained loamy soils with pH 6.2-7.2.</p>
+            {% elif result == 'blackgram' %}
+            <p>Blackgram grows well in loamy or sandy loam soils with pH 6.5-7.8.</p>
+            {% elif result == 'lentil' %}
+            <p>Lentil prefers well-drained loamy soils with pH 6.0-8.0.</p>
+            {% elif result == 'pomegranate' %}
+            <p>Pomegranate grows in a wide range of soils but prefers deep, well-drained loams with pH 5.5-7.2.</p>
+            {% elif result == 'banana' %}
+            <p>Banana requires deep, well-drained loamy soils rich in organic matter with pH 6.0-7.5.</p>
+            {% elif result == 'mango' %}
+            <p>Mango grows in a wide range of soils but prefers deep, well-drained loamy soils with pH 5.5-7.5.</p>
+            {% elif result == 'grapes' %}
+            <p>Grapes require well-drained sandy loam soils with pH 6.5-7.5.</p>
+            {% elif result == 'watermelon' %}
+            <p>Watermelon grows best in sandy loam soils with pH 6.0-7.0.</p>
+            {% elif result == 'muskmelon' %}
+            <p>Muskmelon prefers well-drained sandy loam soils with pH 6.0-6.8.</p>
+            {% elif result == 'apple' %}
+            <p>Apple requires deep, well-drained loamy soils with pH 5.5-6.5.</p>
+            {% elif result == 'orange' %}
+            <p>Orange grows best in well-drained sandy loam soils with pH 6.0-7.5.</p>
+            {% elif result == 'papaya' %}
+            <p>Papaya prefers well-drained sandy loam soils with pH 6.0-6.5.</p>
+            {% elif result == 'coconut' %}
+            <p>Coconut thrives in sandy loam soils with pH 5.0-8.0.</p>
+            {% elif result == 'cotton' %}
+            <p>Cotton thrives in deep, well-drained black cotton soils with pH 6.0-8.0.</p>
+            {% elif result == 'jute' %}
+            <p>Jute grows best in alluvial sandy loam soils with pH 6.0-7.5.</p>
+            {% elif result == 'coffee' %}
+            <p>Coffee requires deep, well-drained loamy soils with pH 4.5-6.0.</p>
+            {% else %}
+            <p>General soil requirements for {{ result }} based on your input parameters.</p>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <!-- Pest Management -->
+          <div class="crop-details-card">
+            <h3><i class="fas fa-bug me-2"></i>Pest Management</h3>
+            
+            <!-- Rice -->
+            {% if result == 'rice' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Stem Borer Control</h6>
+              <p><strong>Neem Cake:</strong> Apply 250kg/ha in standing water.</p>
+              <p><strong>NSKE 5%:</strong> Spray during evening hours at 15-day intervals.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Blast Disease Control</h6>
+              <p><strong>Tricyclazole:</strong> 1g per liter at disease appearance.</p>
+              <p><strong>Carbendazim:</strong> 1g per liter for sheath blight.</p>
+            </div>
+            
+            <!-- Maize -->
+            {% elif result == 'maize' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Stem Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals from 3rd week.</p>
+              <p><strong>Trichogramma:</strong> Release @ 50,000/ha at 10 day intervals.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Fall Armyworm</h6>
+              <p><strong>Spinetoram 11.7% SC:</strong> 0.5ml per liter at early infestation.</p>
+            </div>
+            
+            <!-- Chickpea -->
+            {% elif result == 'chickpea' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Pod Borer Control</h6>
+              <p><strong>Neem Seed Kernel Extract 5%:</strong> Spray at flowering and pod formation.</p>
+              <p><strong>Garlic Extract 2%:</strong> Effective against sucking pests.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Wilt Disease</h6>
+              <p><strong>Carbendazim:</strong> 1g per liter as soil drench.</p>
+            </div>
+            
+            <!-- Kidneybeans -->
+            {% elif result == 'kidneybeans' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Aphid Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray weekly during infestation.</p>
+              <p><strong>NSKE 5%:</strong> Effective against various pests.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Anthracnose</h6>
+              <p><strong>Mancozeb 75% WP:</strong> 2g per liter at 10-day intervals.</p>
+            </div>
+            
+            <!-- Pigeonpeas -->
+            {% elif result == 'pigeonpeas' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Pod Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at flowering and pod formation.</p>
+              <p><strong>NPV 250 LE/ha:</strong> Effective against Helicoverpa.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Wilt Disease</h6>
+              <p><strong>Carbendazim:</strong> 1g per liter as soil drench.</p>
+            </div>
+            
+            <!-- Mothbeans -->
+            {% elif result == 'mothbeans' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Pod Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at flowering stage.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Whitefly Control</h6>
+              <p><strong>Acetamiprid 20% SP:</strong> 0.2g per liter.</p>
+            </div>
+            
+            <!-- Mungbean -->
+            {% elif result == 'mungbean' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Yellow Mosaic Virus</h6>
+              <p><strong>Resistant Varieties:</strong> Grow virus-resistant varieties.</p>
+              <p><strong>Neem Oil 3%:</strong> Controls whitefly vectors.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Pod Borer</h6>
+              <p><strong>Spinosad 45% SC:</strong> 0.3ml per liter.</p>
+            </div>
+            
+            <!-- Blackgram -->
+            {% elif result == 'blackgram' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Yellow Mosaic Virus</h6>
+              <p><strong>Resistant Varieties:</strong> Grow virus-resistant varieties.</p>
+              <p><strong>Neem Oil 3%:</strong> Controls whitefly vectors.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Powdery Mildew</h6>
+              <p><strong>Wettable Sulfur 80% WP:</strong> 2g per liter.</p>
+            </div>
+            
+            <!-- Lentil -->
+            {% elif result == 'lentil' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Aphid Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray weekly during infestation.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Wilt Disease</h6>
+              <p><strong>Carbendazim:</strong> 1g per liter as soil drench.</p>
+            </div>
+            
+            <!-- Pomegranate -->
+            {% elif result == 'pomegranate' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Fruit Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at fruit development stage.</p>
+              <p><strong>Light Traps:</strong> Install 1 trap per acre.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Bacterial Blight</h6>
+              <p><strong>Streptocycline 500ppm:</strong> Spray at disease appearance.</p>
+            </div>
+            
+            <!-- Banana -->
+            {% elif result == 'banana' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Sigatoka Leaf Spot</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Panama Wilt</h6>
+              <p><strong>Carbendazim:</strong> Soil drench @ 1g per liter.</p>
+            </div>
+            
+            <!-- Mango -->
+            {% elif result == 'mango' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Fruit Fly Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at fruit development stage.</p>
+              <p><strong>Bait Traps:</strong> Use 5 traps per acre.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Anthracnose</h6>
+              <p><strong>Carbendazim 50% WP:</strong> 1g per liter.</p>
+            </div>
+            
+            <!-- Grapes -->
+            {% elif result == 'grapes' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Downy Mildew</h6>
+              <p><strong>Bordeaux Mixture 1%:</strong> Spray before monsoon.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Powdery Mildew</h6>
+              <p><strong>Wettable Sulfur 80% WP:</strong> 2g per liter.</p>
+            </div>
+            
+            <!-- Watermelon -->
+            {% elif result == 'watermelon' %}
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Fruit Fly Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at fruit development stage.</p>
+            </div>
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Downy Mildew</h6>
+              <p><strong>Mancozeb 75% WP:</strong> 2g per liter.</p>
+            </div>
+                        <!-- Muskmelon -->
+                        {% elif result == 'muskmelon' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Powdery Mildew</h6>
+                          <p><strong>Baking Soda Spray:</strong> 1 tsp baking soda + 1L water + few drops of soap.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Fruit Fly</h6>
+                          <p><strong>Malathion 50% EC:</strong> 2ml per liter as bait spray.</p>
+                        </div>
+                        
+                        <!-- Apple -->
+                        {% elif result == 'apple' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> San Jose Scale</h6>
+                          <p><strong>Dormant Oil Spray:</strong> Apply during winter at 2% concentration.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Apple Scab</h6>
+                          <p><strong>Mancozeb 75% WP:</strong> 2g per liter at green tip stage.</p>
+                        </div>
+                        
+                        <!-- Orange -->
+                        {% elif result == 'orange' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Citrus Psylla</h6>
+                          <p><strong>Neem Oil 3%:</strong> Spray at new flush appearance.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Citrus Canker</h6>
+                          <p><strong>Copper Oxychloride 50% WP:</strong> 3g per liter.</p>
+                        </div>
+                        
+                        <!-- Papaya -->
+                        {% elif result == 'papaya' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Papaya Ring Spot Virus</h6>
+                          <p><strong>Resistant Varieties:</strong> Grow tolerant varieties.</p>
+                          <p><strong>Neem Oil 3%:</strong> Controls aphid vectors.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Powdery Mildew</h6>
+                          <p><strong>Wettable Sulfur 80% WP:</strong> 2g per liter.</p>
+                        </div>
+                        
+                        <!-- Coconut -->
+                        {% elif result == 'coconut' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Rhinoceros Beetle</h6>
+                          <p><strong>Neem Cake:</strong> Apply 1kg per palm annually.</p>
+                          <p><strong>Biological Control:</strong> Use Metarhizium anisopliae fungus.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Eriophyid Mite</h6>
+                          <p><strong>Dicofol 18.5% EC:</strong> 2.5ml per liter.</p>
+                        </div>
+                        
+                        <!-- Cotton -->
+                        {% elif result == 'cotton' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Bollworm Control</h6>
+                          <p><strong>Nuclear Polyhedrosis Virus (NPV):</strong> 250 LE/ha mixed with 0.1% teepol.</p>
+                          <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals from square formation.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Pink Bollworm</h6>
+                          <p><strong>Spinosad 45% SC:</strong> 0.3ml per liter.</p>
+                        </div>
+                        
+                        <!-- Jute -->
+                        {% elif result == 'jute' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Stem Weevil</h6>
+                          <p><strong>Neem Seed Kernel Extract 5%:</strong> Spray at 15-day intervals.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Stem Rot</h6>
+                          <p><strong>Carbendazim 50% WP:</strong> 1g per liter.</p>
+                        </div>
+                        
+                        <!-- Coffee -->
+                        {% elif result == 'coffee' %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> Coffee Berry Borer</h6>
+                          <p><strong>Beauveria bassiana:</strong> Fungal biocontrol agent.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> Leaf Rust</h6>
+                          <p><strong>Copper Oxychloride 50% WP:</strong> 3g per liter.</p>
+                        </div>
+                        
+                        {% else %}
+                        <div class="pesticide-card natural">
+                          <h6><span class="badge badge-natural text-white">Natural</span> General Pest Control</h6>
+                          <p><strong>Neem Oil Spray:</strong> 5ml per liter every 10-15 days.</p>
+                          <p><strong>Garlic-Chili Spray:</strong> Effective against many pests.</p>
+                        </div>
+                        <div class="pesticide-card artificial">
+                          <h6><span class="badge badge-artificial text-white">Chemical</span> General Disease Control</h6>
+                          <p><strong>Mancozeb:</strong> Broad-spectrum fungicide @ 2g/liter.</p>
+                        </div>
+                        {% endif %}
+                      </div>
+                      
+                      <!-- Additional Tips -->
+                      <div class="crop-details-card">
+                        <h3><i class="fas fa-lightbulb me-2"></i>Cultivation Tips</h3>
+                        
+                        <!-- Rice -->
+                        {% if result == 'rice' %}
+                        <ul>
+                          <li>Maintain 2-3cm water depth during vegetative phase</li>
+                          <li>Practice System of Rice Intensification (SRI) for higher yields</li>
+                          <li>Apply FYM @ 5-10 tons/ha before planting</li>
+                          <li>Use certified seeds for better germination</li>
+                        </ul>
+                        
+                        <!-- Maize -->
+                        {% elif result == 'maize' %}
+                        <ul>
+                          <li>Plant spacing: 60cm between rows, 20cm between plants</li>
+                          <li>Apply 120:60:40 kg NPK/ha for optimal yield</li>
+                          <li>Practice crop rotation with legumes</li>
+                          <li>Harvest when moisture content is 20-25%</li>
+                        </ul>
+                        
+                        <!-- Chickpea -->
+                        {% elif result == 'chickpea' %}
+                        <ul>
+                          <li>Seed treatment with Rhizobium culture improves nitrogen fixation</li>
+                          <li>Irrigate at flowering and pod formation stages</li>
+                          <li>Harvest when 70-80% pods are mature</li>
+                          <li>Thresh immediately after harvest to avoid shattering</li>
+                        </ul>
+                        
+                        <!-- Kidneybeans -->
+                        {% elif result == 'kidneybeans' %}
+                        <ul>
+                          <li>Plant in rows 45cm apart with 10cm plant spacing</li>
+                          <li>Apply phosphorus-rich fertilizer at sowing</li>
+                          <li>Provide support for climbing varieties</li>
+                          <li>Harvest when pods are fully developed but still green</li>
+                        </ul>
+                        
+                        <!-- Pigeonpeas -->
+                        {% elif result == 'pigeonpeas' %}
+                        <ul>
+                          <li>Intercrop with cereals for better land utilization</li>
+                          <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+                          <li>Practice ridge sowing in heavy rainfall areas</li>
+                          <li>Harvest when 75% pods turn brown</li>
+                        </ul>
+                        
+                        <!-- Mothbeans -->
+                        {% elif result == 'mothbeans' %}
+                        <ul>
+                          <li>Sow in rows 30cm apart for better yield</li>
+                          <li>Drought-tolerant but benefits from 1-2 irrigations</li>
+                          <li>Harvest when 80% pods turn yellow</li>
+                          <li>Thresh immediately after harvest</li>
+                        </ul>
+                        
+                        <!-- Mungbean -->
+                        {% elif result == 'mungbean' %}
+                        <ul>
+                          <li>Treat seeds with Trichoderma viride @ 4g/kg seed</li>
+                          <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+                          <li>Harvest when 80% pods turn black</li>
+                          <li>Dry to 10% moisture before storage</li>
+                        </ul>
+                        
+                        <!-- Blackgram -->
+                        {% elif result == 'blackgram' %}
+                        <ul>
+                          <li>Treat seeds with Rhizobium culture before sowing</li>
+                          <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+                          <li>Harvest when 80% pods turn black</li>
+                          <li>Thresh immediately after harvest</li>
+                        </ul>
+                        
+                        <!-- Lentil -->
+                        {% elif result == 'lentil' %}
+                        <ul>
+                          <li>Treat seeds with Rhizobium culture before sowing</li>
+                          <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+                          <li>Harvest when plants turn yellow and pods mature</li>
+                          <li>Dry to 10% moisture before storage</li>
+                        </ul>
+                        
+                        <!-- Pomegranate -->
+                        {% elif result == 'pomegranate' %}
+                        <ul>
+                          <li>Plant in pits of 60cm³ filled with FYM and topsoil</li>
+                          <li>Prune annually to maintain shape and productivity</li>
+                          <li>Irrigate at 7-10 day intervals in summer</li>
+                          <li>Harvest when fruits develop characteristic color</li>
+                        </ul>
+                        
+                        <!-- Banana -->
+                        {% elif result == 'banana' %}
+                        <ul>
+                          <li>Plant suckers at 1.5m x 1.5m spacing</li>
+                          <li>Remove excess suckers, maintain 3-4 per clump</li>
+                          <li>Provide support to bearing plants</li>
+                          <li>Harvest when fingers are plump but still green</li>
+                        </ul>
+                        
+                        <!-- Mango -->
+                        {% elif result == 'mango' %}
+                        <ul>
+                          <li>Plant in pits of 1m³ filled with FYM and topsoil</li>
+                          <li>Prune to maintain 3-4 main branches</li>
+                          <li>Irrigate at 10-15 day intervals in non-rainy season</li>
+                          <li>Harvest when shoulders develop and color changes</li>
+                        </ul>
+                        
+                        <!-- Grapes -->
+                        {% elif result == 'grapes' %}
+                        <ul>
+                          <li>Train vines on overhead trellis or bower system</li>
+                          <li>Prune annually to maintain productivity</li>
+                          <li>Irrigate at 7-10 day intervals</li>
+                          <li>Harvest when berries are fully colored and sweet</li>
+                        </ul>
+                        
+                        <!-- Watermelon -->
+                        {% elif result == 'watermelon' %}
+                        <ul>
+                          <li>Plant on raised beds for better drainage</li>
+                          <li>Space plants 1.5m apart in rows 2m apart</li>
+                          <li>Irrigate regularly, especially during fruit development</li>
+                          <li>Harvest when tendril near fruit turns brown</li>
+                        </ul>
+                        
+                        <!-- Muskmelon -->
+                        {% elif result == 'muskmelon' %}
+                        <ul>
+                          <li>Plant on raised beds for better drainage</li>
+                          <li>Space plants 1m apart in rows 1.5m apart</li>
+                          <li>Irrigate regularly but avoid wetting foliage</li>
+                          <li>Harvest when fruit slips easily from vine</li>
+                        </ul>
+                        
+                        <!-- Apple -->
+                        {% elif result == 'apple' %}
+                        <ul>
+                          <li>Plant at 4m x 4m spacing in pits filled with FYM</li>
+                          <li>Prune annually to maintain shape and productivity</li>
+                          <li>Thin fruits to 1-2 per cluster for better size</li>
+                          <li>Harvest when fruits develop characteristic color</li>
+                        </ul>
+                        
+                        <!-- Orange -->
+                        {% elif result == 'orange' %}
+                        <ul>
+                          <li>Plant at 5m x 5m spacing in pits filled with FYM</li>
+                          <li>Prune to remove dead and diseased branches</li>
+                          <li>Irrigate at 10-15 day intervals in non-rainy season</li>
+                          <li>Harvest when fruits develop orange color</li>
+                        </ul>
+                        
+                        <!-- Papaya -->
+                        {% elif result == 'papaya' %}
+                        <ul>
+                          <li>Plant at 1.8m x 1.8m spacing in pits filled with FYM</li>
+                          <li>Maintain 1 male plant per 10 females for pollination</li>
+                          <li>Irrigate at 5-7 day intervals in summer</li>
+                          <li>Harvest when fruits develop yellow tinge</li>
+                        </ul>
+                        
+                        <!-- Coconut -->
+                        {% elif result == 'coconut' %}
+                        <ul>
+                          <li>Plant at 7.5m x 7.5m spacing in pits filled with FYM</li>
+                          <li>Apply 1kg NPK mixture per palm annually</li>
+                          <li>Irrigate young palms at 4-5 day intervals</li>
+                          <li>Harvest when nuts are 11-12 months old</li>
+                        </ul>
+                        
+                        <!-- Cotton -->
+                        {% elif result == 'cotton' %}
+                        <ul>
+                          <li>Plant at 60cm row spacing with 30cm plant spacing</li>
+                          <li>Apply 80:40:40 kg NPK/ha in split doses</li>
+                          <li>Practice topping (removal of terminal bud) to control height</li>
+                          <li>Harvest in 2-3 pickings when bolls open</li>
+                        </ul>
+                        
+                        <!-- Jute -->
+                        {% elif result == 'jute' %}
+                        <ul>
+                          <li>Broadcast seeds at 5-6 kg/ha rate</li>
+                          <li>Apply 40:20:20 kg NPK/ha as basal dose</li>
+                          <li>Harvest at early pod stage for best fiber quality</li>
+                          <li>Ret in clean water for 15-20 days for fiber extraction</li>
+                        </ul>
+                        
+                        <!-- Coffee -->
+                        {% elif result == 'coffee' %}
+                        <ul>
+                          <li>Plant at 2m x 2m spacing in pits filled with FYM</li>
+                          <li>Prune annually to maintain productivity</li>
+                          <li>Provide shade with silver oak or other trees</li>
+                          <li>Harvest when berries turn red (cherry stage)</li>
+                        </ul>
+                        
+                        {% else %}
+                        <ul>
+                          <li>Test soil before planting for specific nutrient requirements</li>
+                          <li>Monitor for pests regularly</li>
+                          <li>Maintain proper irrigation schedule</li>
+                          <li>Harvest at optimal maturity for best quality</li>
+                        </ul>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="back-btn">
+                    <a href="/" class="btn btn-primary">
+                      <i class="fas fa-arrow-left me-2"></i>Back to Recommendation Tool
+                    </a>
+                  </div>
+                </main>
+            
+                <!-- Footer -->
+                <footer class="footer">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-4 mb-4 mb-md-0">
+                        <h5 class="mb-3">AgriSmart</h5>
+                        <p>Your complete guide to smart farming with crop recommendations, cultivation timing, and pest management solutions.</p>
+                        <div class="social-icons mt-3">
+                          <a href="#"><i class="fab fa-facebook"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                      </div>
+                      <div class="col-md-2 mb-4 mb-md-0">
+                        <h5 class="mb-3">Resources</h5>
+                        <ul class="list-unstyled footer-links">
+                          <li class="mb-2"><a href="#">Crop Guides</a></li>
+                          <li class="mb-2"><a href="#">Seasonal Calendar</a></li>
+                          <li class="mb-2"><a href="#">Pest Database</a></li>
+                          <li class="mb-2"><a href="#">Farming Techniques</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-3 mb-4 mb-md-0">
+                        <h5 class="mb-3">Quick Links</h5>
+                        <ul class="list-unstyled footer-links">
+                          <li class="mb-2"><a href="#">Home</a></li>
+                          <li class="mb-2"><a href="#">Recommendation Tool</a></li>
+                          <li class="mb-2"><a href="#">About Us</a></li>
+                          <li class="mb-2"><a href="#">Contact</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-3">
+                        <h5 class="mb-3">Subscribe</h5>
+                        <p>Get monthly farming tips and crop updates</p>
+                        <div class="input-group mb-3">
+                          <input type="email" class="form-control" placeholder="Your email">
+                          <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="copyright text-center">
+                      <p class="mb-0">&copy; 2023 AgriSmart. All rights reserved.</p>
+                    </div>
+                  </div>
+                </footer>
+            
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+                <script>
+                  // Smooth scrolling for anchor links
+                  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      
+                      document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                      });
+                    });
+                  });
+                  
+                  // Form input animations
+                  document.querySelectorAll('.form-control').forEach(input => {
+                    input.addEventListener('focus', function() {
+                      this.parentElement.style.transform = 'scale(1.02)';
+                      this.parentElement.style.zIndex = '1';
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                      this.parentElement.style.transform = 'scale(1)';
+                      this.parentElement.style.zIndex = '0';
+                    });
+                  });
+                </script>
+              </body>
+            </html>

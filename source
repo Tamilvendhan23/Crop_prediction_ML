@@ -1,0 +1,21 @@
+
+http://127.0.0.1:5000
+
+
+pip install numpy,pandas,flask
+pip install scikit-learn
+pip install ipykernel
+
+
+Getting dataset from kaggle - for crop recommendation https://www.kaggle.com/datasets/atharvaingle/crop-recommendation-dataset
+ the field is 
+N - ratio of Nitrogen content in soil
+P - ratio of Phosphorous content in soil
+K - ratio of Potassium content in soil
+temperature - temperature in degree Celsius
+humidity - relative humidity in %
+ph - ph value of the soil
+rainfall - rainfall in mm
+
+
+
