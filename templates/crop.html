@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap">
   
   </head>
+
   <style>
     :root {
       --primary-color: #4CAF50;
@@ -19,6 +20,14 @@
       --light-text: #757575;
       --section-bg: #F9F9F9;
     }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+    
     .header {
       background: linear-gradient(135deg, var(--secondary-color), #1B5E20);
       color: white;
@@ -37,7 +46,7 @@
     }
     
     .hero {
-      background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop') center/cover;
+      background: url('./static/background.png') center/cover;
       padding: 4rem 0;
       position: relative;
       color: white;
@@ -87,132 +96,6 @@
       margin: 0.5rem auto;
       border-radius: 2px;
     }
-    
-    .form-label {
-      font-weight: 600;
-      color: var(--dark-text);
-      margin-bottom: 0.5rem;
-    }
-    
-    .form-control {
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      transition: all 0.3s;
-    }
-    
-    .form-control:focus {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.25);
-    }
-    
-    .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: all 0.3s;
-    }
-    
-    .btn-primary:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-      transform: translateY(-2px);
-    }
-    
-    .result-card {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
-      overflow: hidden;
-      transition: all 0.3s;
-      margin: 2rem auto;
-      max-width: 400px;
-    }
-    
-    .result-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
-    }
-    
-    .card-icon {
-      font-size: 3rem;
-      color: white;
-      margin-bottom: 1rem;
-    }
-    
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    
-    .card-text {
-      font-size: 1.25rem;
-      font-weight: 500;
-    }
-    
-    .input-group-text {
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      min-width: 45px;
-      justify-content: center;
-    }
-    
-    .feature-section {
-      background-color: var(--section-bg);
-      padding: 3rem 0;
-      margin: 2rem 0;
-    }
-    
-    .feature-card {
-      background: white;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      height: 100%;
-      transition: all 0.3s;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    
-    .feature-icon {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
-    
-    .footer {
-      background-color: var(--secondary-color);
-      color: white;
-      padding: 2rem 0;
-      margin-top: 3rem;
-    }
-    
-    .footer-links a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-    }
-    
-    .social-icons a {
-      color: white;
-      font-size: 1.5rem;
-      margin-right: 1rem;
-      transition: all 0.3s;
-    }
-    
-    /* [Previous CSS remains unchanged] */
     
     .crop-guide {
       background-color: white;
@@ -275,260 +158,1285 @@
     .badge-artificial {
       background-color: #FF9800;
     }
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+
+    }
+    .btn-primary:hover{
+      background-color: #1e8d22;
+      border-color: #1e8d22;
+    }
     
+    .footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
     
-    /* [Rest of previous CSS remains unchanged] */
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .container-main {
+        padding: 1.5rem;
+      }
+      
+      .page-title {
+        font-size: 1.75rem;
+      }
+      
+      .hero {
+        padding: 2rem 0;
+      }
+    }
   </style>
 
   <body>
-    <!-- [Previous Header, Hero, and Features sections remain unchanged] -->
-   <!-- Header -->
-   <header class="header">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <i class="fas fa-leaf me-2"></i>AgriSmart
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#features">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#recommendation">Recommendation</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#about">About</a>
-              </li>
-            </ul> -->
-            <ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link text-black fw-bold fs-5" style="letter-spacing: 1px; href="#about">Crop Cultivation Guide
-            </a></li></ul>
-            
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-
-
-  <!-- Features Section -->
-  
-    <!-- Crop Guide Section -->
-    <section id="crop-guide" class="feature-section">
+    <!-- Header -->
+    <header class="header">
       <div class="container">
-        <!-- <h2 class="text-center mb-5">Crop Cultivation Guide</h2> -->
-        <p class="text-center lead mb-5">Learn the optimal seasons, cultivation practices, and pest management for various crops</p>
-        
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="crop-guide">
-              <div class="crop-header">
-                <div class="crop-icon">
-                  <i class="fas fa-apple-alt"></i>
-                </div>
-                <h3>Onion Cultivation Guide</h3>
-              </div>
-              
-              <h5>Optimal Planting Seasons:</h5>
-              <table class="season-table">
-                <tr>
-                  <th>Region</th>
-                  <th>Best Planting Time</th>
-                  <th>Harvest Time</th>
-                </tr>
-                <tr>
-                  <td>North India</td>
-                  <td>October-November</td>
-                  <td>April-May</td>
-                </tr>
-                <tr>
-                  <td>South India</td>
-                  <td>May-June</td>
-                  <td>October-December</td>
-                </tr>
-                <tr>
-                  <td>Central India</td>
-                  <td>November-December</td>
-                  <td>March-April</td>
-                </tr>
-              </table>
-              
-              <h5 class="mt-4">Pest Management:</h5>
-              
-              <div class="pesticide-card natural">
-                <h6><span class="badge badge-natural text-white">Natural</span> Thrips Control</h6>
-                <p><strong>Neem Oil Spray:</strong> Mix 5ml neem oil + 2ml liquid soap per liter of water. Spray every 10 days.</p>
-                <p><strong>Garlic-Chili Spray:</strong> Blend 100g garlic + 100g chili in 1L water, strain and dilute 1:10 before spraying.</p>
-              </div>
-              
-              <div class="pesticide-card artificial">
-                <h6><span class="badge badge-artificial text-white">Chemical</span> Fungal Disease Control</h6>
-                <p><strong>Dithane M-45:</strong> 2g per liter water for purple blotch. Spray at 15-day intervals.</p>
-                <p><strong>Bavistin:</strong> 1g per liter water for stemphylium blight.</p>
-              </div>
-            </div>
-            
-            <div class="crop-guide">
-              <div class="crop-header">
-                <div class="crop-icon">
-                  <i class="fas fa-seedling"></i>
-                </div>
-                <h3>Tomato Cultivation Guide</h3>
-              </div>
-              
-              <h5>Optimal Planting Seasons:</h5>
-              <table class="season-table">
-                <tr>
-                  <th>Region</th>
-                  <th>Best Planting Time</th>
-                  <th>Harvest Time</th>
-                </tr>
-                <tr>
-                  <td>North India</td>
-                  <td>July-August (Rainy)<br>November-December (Winter)</td>
-                  <td>October-November<br>March-April</td>
-                </tr>
-                <tr>
-                  <td>South India</td>
-                  <td>June-July<br>December-January</td>
-                  <td>September-October<br>April-May</td>
-                </tr>
-              </table>
-              
-              <h5 class="mt-4">Pest Management:</h5>
-              
-              <div class="pesticide-card natural">
-                <h6><span class="badge badge-natural text-white">Natural</span> Fruit Borer Control</h6>
-                <p><strong>Neem Seed Kernel Extract:</strong> 5% solution sprayed weekly during fruiting.</p>
-                <p><strong>Trichoderma viride:</strong> Soil application @ 2.5kg/ha mixed with FYM.</p>
-              </div>
-              
-              <div class="pesticide-card artificial">
-                <h6><span class="badge badge-artificial text-white">Chemical</span> Early Blight Control</h6>
-                <p><strong>Mancozeb:</strong> 2g per liter at 10-day intervals from 3-4 week after planting.</p>
-                <p><strong>Imidacloprid:</strong> 0.5ml per liter for whitefly control.</p>
-              </div>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <i class="fas fa-leaf me-2"></i>AgriSmart
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#crop-guide">Crop Guide</a>
+                </li>
+              </ul>
             </div>
           </div>
-          
-          <div class="col-lg-6">
-            <div class="crop-guide">
-              <div class="crop-header">
-                <div class="crop-icon">
-                  <i class="fas fa-rice"></i>
-                  <i class="fa-sharp fa-solid fa-wheat-awn-circle-exclamation"></i>
-                </div>
-                <h3>Rice Cultivation Guide</h3>
-              </div>
-              
-              <h5>Optimal Planting Seasons:</h5>
-              <table class="season-table">
-                <tr>
-                  <th>Season</th>
-                  <th>Sowing Time</th>
-                  <th>Harvest Time</th>
-                  <th>Varieties</th>
-                </tr>
-                <tr>
-                  <td>Kharif</td>
-                  <td>June-July</td>
-                  <td>November-December</td>
-                  <td>Swarna, MTU 1010</td>
-                </tr>
-                <tr>
-                  <td>Rabi</td>
-                  <td>November-December</td>
-                  <td>March-April</td>
-                  <td>BPT 5204, WGL 14</td>
-                </tr>
-                <tr>
-                  <td>Summer</td>
-                  <td>January-February</td>
-                  <td>April-May</td>
-                  <td>Intan, IR 64</td>
-                </tr>
-              </table>
-              
-              <h5 class="mt-4">Pest Management:</h5>
-              
-              <div class="pesticide-card natural">
-                <h6><span class="badge badge-natural text-white">Natural</span> Stem Borer Control</h6>
-                <p><strong>Neem Cake:</strong> Apply 250kg/ha in standing water.</p>
-                <p><strong>NSKE 5%:</strong> Spray during evening hours at 15-day intervals.</p>
-              </div>
-              
-              <div class="pesticide-card artificial">
-                <h6><span class="badge badge-artificial text-white">Chemical</span> Blast Disease Control</h6>
-                <p><strong>Tricyclazole:</strong> 1g per liter at disease appearance.</p>
-                <p><strong>Carbendazim:</strong> 1g per liter for sheath blight.</p>
-              </div>
-            </div>
-            
-            <div class="crop-guide">
-              <div class="crop-header">
-                <div class="crop-icon">
-                  <i class="fas fa-pepper-hot"></i>
-                  
-                </div>
-                <h3>Cotton Cultivation Guide</h3>
-              </div>
-              
-              <h5>Optimal Planting Seasons:</h5>
-              <table class="season-table">
-                <tr>
-                  <th>Region</th>
-                  <th>Sowing Time</th>
-                  <th>Harvest Time</th>
-                </tr>
-                <tr>
-                  <td>North Zone</td>
-                  <td>April-May</td>
-                  <td>October-December</td>
-                </tr>
-                <tr>
-                  <td>Central Zone</td>
-                  <td>June-July</td>
-                  <td>December-February</td>
-                </tr>
-                <tr>
-                  <td>South Zone</td>
-                  <td>May-June</td>
-                  <td>November-January</td>
-                </tr>
-              </table>
-              
-              <h5 class="mt-4">Pest Management:</h5>
-              
-              <div class="pesticide-card natural">
-                <h6><span class="badge badge-natural text-white">Natural</span> Bollworm Control</h6>
-                <p><strong>Nuclear Polyhedrosis Virus (NPV):</strong> 250 LE/ha mixed with 0.1% teepol.</p>
-                <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals from square formation.</p>
-              </div>
-              
-              <div class="pesticide-card artificial">
-                <h6><span class="badge badge-artificial text-white">Chemical</span> Sucking Pest Control</h6>
-                <p><strong>Acephate 75% SP:</strong> 1.5g per liter for aphids and whiteflies.</p>
-                <p><strong>Spinosad 45% SC:</strong> 0.3ml per liter for spotted bollworm.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="text-center mt-4">
-          <a href="/">
-              <button class="btn btn-primary">View More Crops</button>
-          </a>
+        </nav>
       </div>
-      
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1 class="display-4 fw-bold mb-4">Complete Crop Cultivation Guide</h1>
+        <p class="lead mb-5">Detailed information on optimal seasons, cultivation practices, and pest management for 22 major crops</p>
       </div>
     </section>
 
-    <!-- [Previous Recommendation Form and About sections remain unchanged] -->
+    <!-- Main Content -->
+    <main class="container-main">
+      <h2 class="page-title">Crop Cultivation Guides</h2>
+      <p class="text-center lead mb-5">Select a crop to view detailed cultivation information</p>
+      
+      <div class="row">
+        <!-- Rice -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-wheat"></i>
+              </div>
+              <h3>Rice Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+                <th>Varieties</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>November-December</td>
+                <td>Swarna, MTU 1010</td>
+              </tr>
+              <tr>
+                <td>Rabi</td>
+                <td>November-December</td>
+                <td>March-April</td>
+                <td>BPT 5204, WGL 14</td>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>January-February</td>
+                <td>April-May</td>
+                <td>Intan, IR 64</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Rice grows best in clayey loam soil with good water retention capacity. Ideal pH range: 5.5-6.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Stem Borer Control</h6>
+              <p><strong>Neem Cake:</strong> Apply 250kg/ha in standing water.</p>
+              <p><strong>NSKE 5%:</strong> Spray during evening hours at 15-day intervals.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Blast Disease Control</h6>
+              <p><strong>Tricyclazole:</strong> 1g per liter at disease appearance.</p>
+              <p><strong>Carbendazim:</strong> 1g per liter for sheath blight.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Maintain 2-3cm water depth during vegetative phase</li>
+              <li>Practice System of Rice Intensification (SRI) for higher yields</li>
+              <li>Apply FYM @ 5-10 tons/ha before planting</li>
+              <li>Use certified seeds for better germination</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Maize -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-corn"></i>
+              </div>
+              <h3>Maize Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>October-November</td>
+                <td>February-March</td>
+              </tr>
+              <tr>
+                <td>Central India</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Maize requires well-drained loamy soil with pH between 6.0-7.5. Avoid waterlogged conditions.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Stem Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals from 3rd week.</p>
+              <p><strong>Trichogramma:</strong> Release @ 50,000/ha at 10 day intervals.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Fall Armyworm</h6>
+              <p><strong>Spinetoram 11.7% SC:</strong> 0.5ml per liter at early infestation.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant spacing: 60cm between rows, 20cm between plants</li>
+              <li>Apply 120:60:40 kg NPK/ha for optimal yield</li>
+              <li>Practice crop rotation with legumes</li>
+              <li>Harvest when moisture content is 20-25%</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Jute -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-basket-shopping"></i>
+              </div>
+              <h3>Jute Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Main Season</td>
+                <td>March-April</td>
+                <td>July-August</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Jute grows best in alluvial sandy loam soils with pH 6.0-7.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Stem Weevil</h6>
+              <p><strong>Neem Seed Kernel Extract 5%:</strong> Spray at 15-day intervals.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Stem Rot</h6>
+              <p><strong>Carbendazim 50% WP:</strong> 1g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Broadcast seeds at 5-6 kg/ha rate</li>
+              <li>Apply 40:20:20 kg NPK/ha as basal dose</li>
+              <li>Harvest at early pod stage for best fiber quality</li>
+              <li>Ret in clean water for 15-20 days for fiber extraction</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Cotton -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-tshirt"></i>
+              </div>
+              <h3>Cotton Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North Zone</td>
+                <td>April-May</td>
+                <td>October-December</td>
+              </tr>
+              <tr>
+                <td>Central Zone</td>
+                <td>June-July</td>
+                <td>December-February</td>
+              </tr>
+              <tr>
+                <td>South Zone</td>
+                <td>May-June</td>
+                <td>November-January</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Cotton thrives in deep, well-drained black cotton soils with pH 6.0-8.0.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Bollworm Control</h6>
+              <p><strong>Nuclear Polyhedrosis Virus (NPV):</strong> 250 LE/ha mixed with 0.1% teepol.</p>
+              <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals from square formation.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Sucking Pest Control</h6>
+              <p><strong>Acephate 75% SP:</strong> 1.5g per liter for aphids and whiteflies.</p>
+              <p><strong>Spinosad 45% SC:</strong> 0.3ml per liter for spotted bollworm.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant at 60cm row spacing with 30cm plant spacing</li>
+              <li>Apply 80:40:40 kg NPK/ha in split doses</li>
+              <li>Practice topping (removal of terminal bud) to control height</li>
+              <li>Harvest in 2-3 pickings when bolls open</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Coconut -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-coconut"></i>
+              </div>
+              <h3>Coconut Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Coastal Areas</td>
+                <td>May-June</td>
+                <td>Year-round after 5-6 years</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Coconut thrives in sandy loam soils with pH 5.0-8.0.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Rhinoceros Beetle</h6>
+              <p><strong>Neem Cake:</strong> Apply 1kg per palm annually.</p>
+              <p><strong>Biological Control:</strong> Use Metarhizium anisopliae fungus.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Eriophyid Mite</h6>
+              <p><strong>Dicofol 18.5% EC:</strong> 2.5ml per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant at 7.5m x 7.5m spacing in pits filled with FYM</li>
+              <li>Apply 1kg NPK mixture per palm annually</li>
+              <li>Irrigate young palms at 4-5 day intervals</li>
+              <li>Harvest when nuts are 11-12 months old</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Papaya -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-apple-alt"></i>
+              </div>
+              <h3>Papaya Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Main Season</td>
+                <td>June-July</td>
+                <td>Starts 8-10 months after planting</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Papaya prefers well-drained sandy loam soils with pH 6.0-6.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Papaya Ring Spot Virus</h6>
+              <p><strong>Resistant Varieties:</strong> Grow tolerant varieties.</p>
+              <p><strong>Neem Oil 3%:</strong> Controls aphid vectors.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Powdery Mildew</h6>
+              <p><strong>Wettable Sulfur 80% WP:</strong> 2g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant at 1.8m x 1.8m spacing in pits filled with FYM</li>
+              <li>Maintain 1 male plant per 10 females for pollination</li>
+              <li>Irrigate at 5-7 day intervals in summer</li>
+              <li>Harvest when fruits develop yellow tinge</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Orange -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-apple-alt"></i>
+              </div>
+              <h3>Orange Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Central India</td>
+                <td>July-August</td>
+                <td>November-January</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>June-July</td>
+                <td>December-February</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Orange grows best in well-drained sandy loam soils with pH 6.0-7.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Citrus Psylla</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at new flush appearance.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Citrus Canker</h6>
+              <p><strong>Copper Oxychloride 50% WP:</strong> 3g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant at 5m x 5m spacing in pits filled with FYM</li>
+              <li>Prune to remove dead and diseased branches</li>
+              <li>Irrigate at 10-15 day intervals in non-rainy season</li>
+              <li>Harvest when fruits develop orange color</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Apple -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-apple-alt"></i>
+              </div>
+              <h3>Apple Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Himalayan Region</td>
+                <td>January-February</td>
+                <td>July-September</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Apple requires deep, well-drained loamy soils with pH 5.5-6.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> San Jose Scale</h6>
+              <p><strong>Dormant Oil Spray:</strong> Apply during winter at 2% concentration.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Apple Scab</h6>
+              <p><strong>Mancozeb 75% WP:</strong> 2g per liter at green tip stage.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant at 4m x 4m spacing in pits filled with FYM</li>
+              <li>Prune annually to maintain shape and productivity</li>
+              <li>Thin fruits to 1-2 per cluster for better size</li>
+              <li>Harvest when fruits develop characteristic color</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Muskmelon -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-watermelon"></i>
+              </div>
+              <h3>Muskmelon Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>January-February</td>
+                <td>April-May</td>
+              </tr>
+              <tr>
+                <td>Rainy</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Muskmelon prefers well-drained sandy loam soils with pH 6.0-6.8.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Powdery Mildew</h6>
+              <p><strong>Baking Soda Spray:</strong> 1 tsp baking soda + 1L water + few drops of soap.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Fruit Fly</h6>
+              <p><strong>Malathion 50% EC:</strong> 2ml per liter as bait spray.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant on raised beds for better drainage</li>
+              <li>Space plants 1m apart in rows 1.5m apart</li>
+              <li>Irrigate regularly but avoid wetting foliage</li>
+              <li>Harvest when fruit slips easily from vine</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Watermelon -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-watermelon"></i>
+              </div>
+              <h3>Watermelon Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>December-January</td>
+                <td>March-April</td>
+              </tr>
+              <tr>
+                <td>Rainy</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Watermelon grows best in sandy loam soils with pH 6.0-7.0.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Fruit Fly Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at fruit development stage.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Downy Mildew</h6>
+              <p><strong>Mancozeb 75% WP:</strong> 2g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant on raised beds for better drainage</li>
+              <li>Space plants 1.5m apart in rows 2m apart</li>
+              <li>Irrigate regularly, especially during fruit development</li>
+              <li>Harvest when tendril near fruit turns brown</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Grapes -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-wine-bottle"></i>
+              </div>
+              <h3>Grapes Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Maharashtra</td>
+                <td>February-March</td>
+                <td>November-December</td>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>January-February</td>
+                <td>May-June</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Grapes require well-drained sandy loam soils with pH 6.5-7.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Downy Mildew</h6>
+              <p><strong>Bordeaux Mixture 1%:</strong> Spray before monsoon.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Powdery Mildew</h6>
+              <p><strong>Wettable Sulfur 80% WP:</strong> 2g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Train vines on overhead trellis or bower system</li>
+              <li>Prune annually to maintain productivity</li>
+              <li>Irrigate at 7-10 day intervals</li>
+              <li>Harvest when berries are fully colored and sweet</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Mango -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-apple-alt"></i>
+              </div>
+              <h3>Mango Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>All India</td>
+                <td>July-August</td>
+                <td>March-July (varies by variety)</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Mango grows in a wide range of soils but prefers deep, well-drained loamy soils with pH 5.5-7.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Fruit Fly Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at fruit development stage.</p>
+              <p><strong>Bait Traps:</strong> Use 5 traps per acre.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Anthracnose</h6>
+              <p><strong>Carbendazim 50% WP:</strong> 1g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant in pits of 1m³ filled with FYM and topsoil</li>
+              <li>Prune to maintain 3-4 main branches</li>
+              <li>Irrigate at 10-15 day intervals in non-rainy season</li>
+              <li>Harvest when shoulders develop and color changes</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Banana -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-apple-alt"></i>
+              </div>
+              <h3>Banana Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>Year-round</td>
+                <td>12-15 months after planting</td>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>June-July</td>
+                <td>12-15 months after planting</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Banana requires deep, well-drained loamy soils rich in organic matter with pH 6.0-7.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Sigatoka Leaf Spot</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at 15-day intervals.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Panama Wilt</h6>
+              <p><strong>Carbendazim:</strong> Soil drench @ 1g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant suckers at 1.5m x 1.5m spacing</li>
+              <li>Remove excess suckers, maintain 3-4 per clump</li>
+              <li>Provide support to bearing plants</li>
+              <li>Harvest when fingers are plump but still green</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Pomegranate -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-apple-alt"></i>
+              </div>
+              <h3>Pomegranate Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Main Season</td>
+                <td>June-July</td>
+                <td>September-February</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Pomegranate grows in a wide range of soils but prefers deep, well-drained loams with pH 5.5-7.2.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Fruit Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at fruit development stage.</p>
+              <p><strong>Light Traps:</strong> Install 1 trap per acre.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Bacterial Blight</h6>
+              <p><strong>Streptocycline 500ppm:</strong> Spray at disease appearance.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant in pits of 60cm³ filled with FYM and topsoil</li>
+              <li>Prune annually to maintain shape and productivity</li>
+              <li>Irrigate at 7-10 day intervals in summer</li>
+              <li>Harvest when fruits develop characteristic color</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Lentil -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Lentil Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>October-November</td>
+                <td>March-April</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Lentil prefers well-drained loamy soils with pH 6.0-8.0.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Aphid Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray weekly during infestation.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Wilt Disease</h6>
+              <p><strong>Carbendazim:</strong> 1g per liter as soil drench.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Treat seeds with Rhizobium culture before sowing</li>
+              <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+              <li>Harvest when plants turn yellow and pods mature</li>
+              <li>Dry to 10% moisture before storage</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Blackgram -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Blackgram Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>Rabi</td>
+                <td>November-December</td>
+                <td>February-March</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Blackgram grows well in loamy or sandy loam soils with pH 6.5-7.8.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Yellow Mosaic Virus</h6>
+              <p><strong>Resistant Varieties:</strong> Grow virus-resistant varieties.</p>
+              <p><strong>Neem Oil 3%:</strong> Controls whitefly vectors.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Powdery Mildew</h6>
+              <p><strong>Wettable Sulfur 80% WP:</strong> 2g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Treat seeds with Rhizobium culture before sowing</li>
+              <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+              <li>Harvest when 80% pods turn black</li>
+              <li>Thresh immediately after harvest</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Mungbean -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Mungbean Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>Summer</td>
+                <td>March-April</td>
+                <td>May-June</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Mungbean prefers well-drained loamy soils with pH 6.2-7.2.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Yellow Mosaic Virus</h6>
+              <p><strong>Resistant Varieties:</strong> Grow virus-resistant varieties.</p>
+              <p><strong>Neem Oil 3%:</strong> Controls whitefly vectors.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Pod Borer</h6>
+              <p><strong>Spinosad 45% SC:</strong> 0.3ml per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Treat seeds with Trichoderma viride @ 4g/kg seed</li>
+              <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+              <li>Harvest when 80% pods turn black</li>
+              <li>Dry to 10% moisture before storage</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Mothbeans -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Mothbeans Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Mothbeans are drought-tolerant and grow well in sandy loam soils with pH 7.0-8.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Pod Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at flowering stage.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Whitefly Control</h6>
+              <p><strong>Acetamiprid 20% SP:</strong> 0.2g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Sow in rows 30cm apart for better yield</li>
+              <li>Drought-tolerant but benefits from 1-2 irrigations</li>
+              <li>Harvest when 80% pods turn yellow</li>
+              <li>Thresh immediately after harvest</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Pigeonpeas -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Pigeonpeas Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>June-July</td>
+                <td>December-January</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>May-June</td>
+                <td>November-December</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Pigeonpeas grow well in a wide range of soils but prefer well-drained loams with pH 5.0-7.0.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Pod Borer Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray at flowering and pod formation.</p>
+              <p><strong>NPV 250 LE/ha:</strong> Effective against Helicoverpa.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Wilt Disease</h6>
+              <p><strong>Carbendazim:</strong> 1g per liter as soil drench.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Intercrop with cereals for better land utilization</li>
+              <li>Apply 20:40:20 kg NPK/ha as basal dose</li>
+              <li>Practice ridge sowing in heavy rainfall areas</li>
+              <li>Harvest when 75% pods turn brown</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Kidneybeans -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Kidneybeans Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Season</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>Kharif</td>
+                <td>June-July</td>
+                <td>September-October</td>
+              </tr>
+              <tr>
+                <td>Rabi</td>
+                <td>October-November</td>
+                <td>February-March</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Kidney beans prefer well-drained sandy loam soils with pH 6.0-7.5.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Aphid Control</h6>
+              <p><strong>Neem Oil 3%:</strong> Spray weekly during infestation.</p>
+              <p><strong>NSKE 5%:</strong> Effective against various pests.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Anthracnose</h6>
+              <p><strong>Mancozeb 75% WP:</strong> 2g per liter at 10-day intervals.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant in rows 45cm apart with 10cm plant spacing</li>
+              <li>Apply phosphorus-rich fertilizer at sowing</li>
+              <li>Provide support for climbing varieties</li>
+              <li>Harvest when pods are fully developed but still green</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Chickpea -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h3>Chickpea Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Sowing Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>North India</td>
+                <td>October-November</td>
+                <td>February-March</td>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>September-October</td>
+                <td>January-February</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Chickpea thrives in well-drained loamy soils with pH 6.0-8.0. Avoid heavy soils.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Pod Borer Control</h6>
+              <p><strong>Neem Seed Kernel Extract 5%:</strong> Spray at flowering and pod formation.</p>
+              <p><strong>Garlic Extract 2%:</strong> Effective against sucking pests.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Wilt Disease</h6>
+              <p><strong>Carbendazim:</strong> 1g per liter as soil drench.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Seed treatment with Rhizobium culture improves nitrogen fixation</li>
+              <li>Irrigate at flowering and pod formation stages</li>
+              <li>Harvest when 70-80% pods are mature</li>
+              <li>Thresh immediately after harvest to avoid shattering</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Coffee -->
+        <div class="col-lg-6">
+          <div class="crop-guide">
+            <div class="crop-header">
+              <div class="crop-icon">
+                <i class="fas fa-coffee"></i>
+              </div>
+              <h3>Coffee Cultivation Guide</h3>
+            </div>
+            
+            <h5>Optimal Planting Seasons:</h5>
+            <table class="season-table">
+              <tr>
+                <th>Region</th>
+                <th>Planting Time</th>
+                <th>Harvest Time</th>
+              </tr>
+              <tr>
+                <td>South India</td>
+                <td>June-July</td>
+                <td>November-March</td>
+              </tr>
+            </table>
+            
+            <h5 class="mt-4">Soil Requirements:</h5>
+            <p>Coffee requires deep, well-drained loamy soils with pH 4.5-6.0.</p>
+            
+            <h5 class="mt-4">Pest Management:</h5>
+            
+            <div class="pesticide-card natural">
+              <h6><span class="badge badge-natural text-white">Natural</span> Coffee Berry Borer</h6>
+              <p><strong>Beauveria bassiana:</strong> Fungal biocontrol agent.</p>
+            </div>
+            
+            <div class="pesticide-card artificial">
+              <h6><span class="badge badge-artificial text-white">Chemical</span> Leaf Rust</h6>
+              <p><strong>Copper Oxychloride 50% WP:</strong> 3g per liter.</p>
+            </div>
+            
+            <h5 class="mt-4">Cultivation Tips:</h5>
+            <ul>
+              <li>Plant at 2m x 2m spacing in pits filled with FYM</li>
+              <li>Prune annually to maintain productivity</li>
+              <li>Provide shade with silver oak or other trees</li>
+              <li>Harvest when berries turn red (cherry stage)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="/">
+            <button class="btn btn-primary">Back to Home</button>
+          </a>
+        </div>
+      </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -547,7 +1455,7 @@
           <div class="col-md-2 mb-4 mb-md-0">
             <h5 class="mb-3">Resources</h5>
             <ul class="list-unstyled footer-links">
-              <li class="mb-2"><a href="#crop-guide">Crop Guides</a></li>
+              <li class="mb-2"><a href="#">Crop Guides</a></li>
               <li class="mb-2"><a href="#">Seasonal Calendar</a></li>
               <li class="mb-2"><a href="#">Pest Database</a></li>
               <li class="mb-2"><a href="#">Farming Techniques</a></li>
@@ -556,10 +1464,10 @@
           <div class="col-md-3 mb-4 mb-md-0">
             <h5 class="mb-3">Quick Links</h5>
             <ul class="list-unstyled footer-links">
-              <li class="mb-2"><a href="#features">Features</a></li>
-              <li class="mb-2"><a href="#recommendation">Recommendation</a></li>
-              <li class="mb-2"><a href="#crop-guide">Crop Guide</a></li>
-              <li class="mb-2"><a href="#about">About</a></li>
+              <li class="mb-2"><a href="#">Home</a></li>
+              <li class="mb-2"><a href="#">Recommendation Tool</a></li>
+              <li class="mb-2"><a href="#">About Us</a></li>
+              <li class="mb-2"><a href="#">Contact</a></li>
             </ul>
           </div>
           <div class="col-md-3">
@@ -577,6 +1485,18 @@
       </div>
     </footer>
 
-    <!-- [Previous JavaScript remains unchanged] -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    </script>
   </body>
 </html>
