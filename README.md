@@ -40,9 +40,9 @@ The dataset used is sourced from publicly available agricultural records and inc
    cd crop-recommendation-ml
 
 ## project structure 
-├── train_model.py         # Script to train and save the ML model
-├── predict_crop.py        # Script to input parameters and get crop recommendation
-├── crop_recommendation.pkl # Trained model file
-├── dataset.csv            # Input dataset
-├── requirements.txt       # Python dependencies
-└── README.md              # Project documentation
+├── train_model.py         
+├── predict_crop.py       
+├── crop_recommendation.pkl 
+├── dataset.csv           
+├── requirements.txt   
+└── README.md       
