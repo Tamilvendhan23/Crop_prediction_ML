@@ -38,3 +38,11 @@ The dataset used is sourced from publicly available agricultural records and inc
    ```bash
    git clone https://github.com/yourusername/crop-recommendation-ml.git
    cd crop-recommendation-ml
+
+
+├── train_model.py         # Script to train and save the ML model
+├── predict_crop.py        # Script to input parameters and get crop recommendation
+├── crop_recommendation.pkl # Trained model file
+├── dataset.csv            # Input dataset
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
