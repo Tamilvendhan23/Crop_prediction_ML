@@ -27,7 +27,7 @@ Using this input, the trained machine learning model predicts the best crop to g
 - **Language**: Python 🐍
 - **Libraries**: `pandas`, `numpy`, `scikit-learn`, `matplotlib`, `seaborn`, `joblib`
 - **Model**: Random Forest Classifier (can be swapped with others like SVM, XGBoost, etc.)
-
+ 
 ## 📊 Dataset
 
 The dataset used is sourced from publicly available agricultural records and includes real-world data. It consists of features like N, P, K, temperature, humidity, pH, and rainfall, mapped to the suitable crop.
@@ -38,6 +38,7 @@ The dataset used is sourced from publicly available agricultural records and inc
    ```bash
    git clone https://github.com/yourusername/crop-recommendation-ml.git
    cd crop-recommendation-ml
+   run application 
 
 ## project structure 
 ├── train_model.py         
