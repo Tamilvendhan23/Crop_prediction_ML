@@ -1,4 +1,4 @@
-# 🌾 Crop Recommendation System using Machine Learning model 
+# 🌾 Crop Recommendation System using Machine Learning
 
 
 This project is a Machine Learning-based solution that recommends the most suitable crop to cultivate based on various environmental and soil parameters. It helps farmers and agricultural experts make data-driven decisions to improve yield and resource efficiency.
